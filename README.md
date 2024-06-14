@@ -1,2 +1,1 @@
 # FoodDeliveryApp
-# Benjamin Alladi
