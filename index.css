@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.nav {
+    background-color: #282c34;
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+
+    position: relative;
+    box-shadow: -2px 7px 5px -6px rgba(0,0,0,.61);
+}
+
+.nav-logo {
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+    height: 3rem;
+    border-radius: 50%;
+    scale: 1.4;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+}
+.nav-list li:hover {
+    cursor: pointer;
+    font-weight: 400;
+
+    scale: 1.05;
+}
+
+.nav-list li img {
+    height: 1.8rem;
+}
+
+.login-btn {
+    background-color: orange;
+    color: white;
+    border: none;
+    margin-left: 1rem;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.name
+{
+    margin-top: 5rem;
+    position: absolute;
+    left: 1.8rem;
+    bottom: 1;
+
+    font-size: large;
+    font-family: cursive;
+}
+
+.icon-white {
+    color: white;
+    border-radius: 50%;
+}
