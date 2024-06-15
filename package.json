@@ -1,10 +1,10 @@
 {
   "name": "fooddelapp",
   "version": "1.0.0",
-  "description": "\"Food Delivery App\"",
+  "description": "Food Delivery App",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html",
+    "start": "parcel public/index.html",
+    "build": "parcel build public/index.html",
     "test": "jest"
   },
   "repository": {
