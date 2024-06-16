@@ -1,14 +1,32 @@
+import { useState } from "react";
+
 export default function CardContainer({restaurantList})
 {
+    let [showingAll, setShowingAll]= useState(true);
+    let [resList, setResList]= useState(restaurantList);
+
+    function handleClick()
+    {
+        setShowingAll(!showingAll);
+        const newResList= showingAll==false?restaurantList: restaurantList.filter(resObj=> resObj.data.avgRating>=4);  
+        setResList(newResList);
+    }
+
     return (
-        <div className="restaurant-container">
-        {
-            restaurantList.map((restaurantObj)=>{
-                    return <Card restaurant={restaurantObj}/>;
-                }
-            )
-        }
-        </div>
+        <>
+            <button className="showbtn" onClick={handleClick}>
+                {showingAll?"Show Top Restaurants":"Show All"}
+            </button>
+            
+            <div className="restaurant-container">
+            {
+                resList.map((restaurantObj)=>{
+                        return <Card restaurant={restaurantObj}/>;
+                    }
+                )
+            }
+            </div>
+        </>
     );
 }
 

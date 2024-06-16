@@ -140,3 +140,24 @@ body {
 {
     padding: 4px 0.5rem;
 }
+
+.showbtn
+{
+    margin: 1rem 42%;
+    background-color: orangered;
+    color: white;
+    border: 2px solid orangered;
+    border-radius: 5px;
+
+    padding: 8px 0px;
+    text-align: center;
+    width: 10rem;
+
+    font-family: PT Sans, Calibri, sans-serif;
+    font-weight: lighter;
+    font-size: medium;
+}
+.showbtn:active
+{
+    scale: 0.98;
+}
