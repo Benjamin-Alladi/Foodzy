@@ -8,8 +8,13 @@ export default function CardContainer({restaurantList})
     function handleClick()
     {
         setShowingAll(!showingAll);
-        const newResList= showingAll==false?restaurantList: restaurantList.filter(resObj=> resObj.data.avgRating>=4);  
+        const newResList= showingAll==false?restaurantList: restaurantList.filter(resObj=> resObj.info.avgRating>=4);  
         setResList(newResList);
+    }
+
+    if(restaurantList.length===0)
+    {
+        return <h1>Loading...</h1>
     }
 
     return (
@@ -32,22 +37,20 @@ export default function CardContainer({restaurantList})
 
 export function Card({restaurant})
 {
-    let {id,name,cloudinaryImageId,area,cuisines,costForTwo,lastMileTravel,avgRating}= restaurant.data;
-    const prefixURL= "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
-    // console.log(id,name,cloudinaryImageId,cuisines,costForTwo);
+    let {id,name,cloudinaryImageId,areaName,cuisines,costForTwo,sla,avgRating}= restaurant.info;
 
     return (
         <div key={id} className="restaurant-card">
-            <img src={prefixURL+cloudinaryImageId} alt="" className="card-img"/>
+            <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/"+cloudinaryImageId} alt="" className="card-img"/>
             <h3 className="res-name">{name}</h3>
             <h5 className="cuisine">{cuisines.join(", ")}</h5>
-            <h5 className="area">{area}</h5>
+            <h5 className="area">{areaName}</h5>
             <ul className="details-box">
                 <li> 
                     ⭐{avgRating}
                 </li>
-                <li>{(lastMileTravel+"").slice(0,3)} km</li>
-                <li>₹{costForTwo/100} for two</li>
+                <li>{sla.lastMileTravel} km</li>
+                <li>{costForTwo}</li>
             </ul>
         </div>
     );
