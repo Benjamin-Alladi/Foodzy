@@ -1,8 +1,7 @@
 import React from "react";
 import NavBar from "./NavBar.js";
 import CardContainer from "./CardContainer.js";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function App()
 {
@@ -23,6 +22,7 @@ export default function App()
             console.log(json);
 
             setRestaurantList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+            console.log("Data if fetched");
         }
         catch(e)
         {

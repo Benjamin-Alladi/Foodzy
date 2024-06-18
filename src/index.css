@@ -154,7 +154,7 @@ body {
 
 .showbtn
 {
-    margin: 1rem 42%;
+    margin: 1rem 38%;
     background-color: orangered;
     color: white;
     border: 2px solid orangered;
@@ -212,5 +212,33 @@ body {
     border-radius: 0.2rem;
 
     margin-bottom: -0.8rem;
+}
+
+#search-box
+{
+   margin-left: 30rem;
+   margin-top: 1rem;
+
+   outline: none;
+   padding: 0.35rem;
+
+   border: 1px solid black;
+   border-radius: 0.1rem;
+}
+.search-btn
+{
+    padding: 0.2rem 0.4rem;
+    background-color: orangered;
+    border: 2px solid orangered;
+    border-radius: 0.2rem;
+    margin-left: 0.3rem;
+
+    color: white;
+    font-family: PT Sans, Calibri, sans-serif;
+}
+
+.search-btn:active
+{
+    scale: 0.95;
 }
 
