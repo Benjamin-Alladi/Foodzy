@@ -1,17 +1,44 @@
 import { useState,useEffect } from "react";
 import ShimmerContainer from "./ShimmerContainer";
 
-export default function CardContainer({restaurantList})
+export default function CardContainer()
 {
+    const [restaurantList, setRestaurantList]= useState([]);
+
     let [showingAll, setShowingAll]= useState(true);
     let [resList, setResList]= useState(restaurantList);
 
+    useEffect(() => {
+        fetchData();
+        setResList(restaurantList);
+    },[]);
+
+    // setting resList because after initial render fetchData() function updates restaurantList and react re-renders this component restaurantList gets updated after rerendering. But now we have to update resList also so after rerendering useEffect() will be called where I am updating resList
     useEffect(() => {
         console.log("useEffect inside CardContainer is called", restaurantList.length);
         if (restaurantList.length > 0) {
           setResList(restaurantList);
         }
       }, [restaurantList]);
+
+    async function fetchData()
+    {
+        try
+        {
+            const response=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.406498&lng=78.47724389999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+
+            const json=await response.json();
+
+            console.log(json);
+
+            setRestaurantList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+            console.log("Data is fetched");
+        }
+        catch(e)
+        {
+            console.log("Error fetching restaurant list: "+e);
+        }
+    }
 
     function handleClick()
     {
@@ -31,7 +58,7 @@ export default function CardContainer({restaurantList})
     function handleSearchClick(text)
     {
         // console.log("handle called by handleChange", searchText+" "+ e.target.value);
-        const matchings= restaurantList.filter(res=> res.info.name.toLowerCase().includes(text.toLowerCase()));
+        const matchings= text.length>0 && restaurantList.filter(res=> res.info.name.toLowerCase().includes(text.toLowerCase()));
         (text.length>0 && matchings.length>0)? setResList(matchings): setResList(restaurantList);
     }
 
