@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import ShimmerContainer from "./ShimmerContainer";
+import {Link} from "react-router-dom";
 
 export default function CardContainer()
 {
@@ -80,9 +81,9 @@ export default function CardContainer()
             {
                 (searchText.length==0 || (searchText.length>0 && resList.length!=restaurantList.length)) ? (
                     resList.map((restaurantObj)=>{
-                        return <Card restaurant={restaurantObj}/>;
+                        return <Card restaurant={restaurantObj} key={restaurantObj.info.id}/>;
                     })
-                ) : <h1>Sorry</h1>
+                ) : <h1>Sorry, No such Restaurants are Found!</h1>
             }
             </div>
         </>
@@ -94,6 +95,7 @@ export function Card({restaurant})
     let {id,name,cloudinaryImageId,areaName,cuisines,costForTwo,sla,avgRating}= restaurant.info;
 
     return (
+        <Link to={"/restaurant/"+id}>
         <div key={id} className="restaurant-card">
             <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/"+cloudinaryImageId} alt="" className="card-img" loading="lazy"/>
             <h3 className="res-name">{name}</h3>
@@ -107,5 +109,6 @@ export function Card({restaurant})
                 <li>{costForTwo}</li>
             </ul>
         </div>
+        </Link>
     );
 }

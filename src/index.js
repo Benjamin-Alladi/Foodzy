@@ -4,6 +4,8 @@ import App from "./App.js";
 import CardContainer from "./CardContainer.js";
 import AboutUs from "./AboutUs.js";
 import ContactUs from "./ContactUs.js";
+import ErrorPage from "./ErrorPage.js";
+import Menu from "./Menu.js";
 import "./index.css";
 
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
@@ -12,20 +14,24 @@ const router= createBrowserRouter([
   {
     path:"/",
     element: <App/>,
-
+    errorElement: <ErrorPage/>,
     children: [
       {
-          path: "/",
-          element: <CardContainer />, // Assuming CardContainer is the home page content
+        path: "/",
+        element: <CardContainer /> // Assuming CardContainer is the home page content
       },
       {
-          path: '/about',
-          element: <AboutUs />,
+        path: '/about',
+        element: <AboutUs />
       },
       {
-          path: '/contact',
-          element: <ContactUs />,
+        path: '/contact',
+        element: <ContactUs />
       },
+      {
+        path: "/restaurant/:resId",
+        element: <Menu/>
+      }
     ],
   },
 ])

@@ -3,7 +3,7 @@ export default function ShimmerContainer()
     return(
         <div className="shimmer-container">
             {
-                Array(10).fill(" ").map((value,index)=> <ShimmerCard ind={index}/>)
+                Array(12).fill(" ").map((value,index)=> <ShimmerCard ind={index} key={index}/>)
             }
         </div>
     );
