@@ -16,27 +16,29 @@ export default function CardContainer({restaurantList})
     function handleClick()
     {
         setShowingAll(!showingAll);
-        const newResList= !(showingAll)?restaurantList.map(res=>{return {...res}}) : restaurantList.filter(resObj=> resObj.info.avgRating>=4);  
+        const newResList= !(showingAll)?restaurantList : restaurantList.filter(resObj=> resObj.info.avgRating>=4);  
         setResList(newResList);
     }
 
     let [searchText, setSearchText]= useState("");
     function handleChange(e)
     {
-        setSearchText(e.target.value);
+        const text= e.target.value;
+        setSearchText(text);
+        handleSearchClick(text);
     }
 
-    function handleSearchClick()
+    function handleSearchClick(text)
     {
-        console.log("search button is clicked");
-        const matchings= restaurantList.filter(res=> res.info.name.toLowerCase().includes(searchText.toLowerCase()));
-        (searchText.length>0 && matchings.length>0)? setResList(matchings): setResList(restaurantList);    
+        // console.log("handle called by handleChange", searchText+" "+ e.target.value);
+        const matchings= restaurantList.filter(res=> res.info.name.toLowerCase().includes(text.toLowerCase()));
+        (text.length>0 && matchings.length>0)? setResList(matchings): setResList(restaurantList);
     }
 
     return restaurantList.length===0? <ShimmerContainer/> :(
         <>
             <label htmlFor="searchBox">
-                <input type="text" id="search-box" name="searchBox" value={searchText} onChange={handleChange}/>
+                <input type="text" id="search-box" name="searchBox" value={searchText} onInput={handleChange}/>
                 <button className="search-btn" onClick={handleSearchClick}>
                     Search
                 </button>
@@ -46,12 +48,14 @@ export default function CardContainer({restaurantList})
                 {showingAll?"Show Top Restaurants":"Show All"}
             </button>
             
+           
             <div className="restaurant-container">
             {
-                resList.map((restaurantObj)=>{
+                (searchText.length==0 || (searchText.length>0 && resList.length!=restaurantList.length)) ? (
+                    resList.map((restaurantObj)=>{
                         return <Card restaurant={restaurantObj}/>;
-                    }
-                )
+                    })
+                ) : <h1>Sorry</h1>
             }
             </div>
         </>
