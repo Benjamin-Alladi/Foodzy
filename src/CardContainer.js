@@ -11,12 +11,11 @@ export default function CardContainer()
 
     useEffect(() => {
         fetchData();
-        setResList(restaurantList);
     },[]);
 
     // setting resList because after initial render fetchData() function updates restaurantList and react re-renders this component restaurantList gets updated after rerendering. But now we have to update resList also so after rerendering useEffect() will be called where I am updating resList
     useEffect(() => {
-        console.log("useEffect inside CardContainer is called", restaurantList.length);
+        // console.log("useEffect inside CardContainer is called", restaurantList.length);
         if (restaurantList.length > 0) {
           setResList(restaurantList);
         }
@@ -33,7 +32,7 @@ export default function CardContainer()
             console.log(json);
 
             setRestaurantList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-            console.log("Data is fetched");
+            console.log("CardContainer Data is fetched");
         }
         catch(e)
         {
@@ -93,11 +92,12 @@ export default function CardContainer()
 export function Card({restaurant})
 {
     let {id,name,cloudinaryImageId,areaName,cuisines,costForTwo,sla,avgRating}= restaurant.info;
+    const swiggy_url="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
 
     return (
         <Link to={"/restaurant/"+id}>
         <div key={id} className="restaurant-card">
-            <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/"+cloudinaryImageId} alt="" className="card-img" loading="lazy"/>
+            <img src={swiggy_url+cloudinaryImageId} alt="" className="card-img" loading="lazy"/>
             <h3 className="res-name">{name}</h3>
             <h5 className="cuisine">{cuisines.join(", ")}</h5>
             <h5 className="area">{areaName}</h5>
