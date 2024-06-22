@@ -62,6 +62,7 @@ export default function CardContainer()
         (text.length>0 && matchings.length>0)? setResList(matchings): setResList(restaurantList);
     }
 
+    const PromotedCard= getLabelledCard(Card);
     return restaurantList.length===0? <ShimmerContainer/> :(
         <>
             <label htmlFor="searchBox">
@@ -111,4 +112,19 @@ export function Card({restaurant})
         </div>
         </Link>
     );
+}
+
+// This is a HOC that takes another Component as argument and returns a new Component.
+// HOC's are Pure Functions.
+export function getLabelledCard(Card)
+{
+    return (props)=>{
+        return(
+            
+            <div>
+                <label htmlFor="">Promoted</label>
+                <Card {...props}/>
+            </div>
+        );
+    }
 }

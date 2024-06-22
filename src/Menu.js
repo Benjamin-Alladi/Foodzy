@@ -1,5 +1,6 @@
 import {useParams} from "react-router-dom";
 import { useState, useEffect } from "react";
+import { MenuContainer } from "./MenuContainer";
 
 export default function Menu()
 {
@@ -32,7 +33,6 @@ export default function Menu()
 
         setRestaurant(restaurantData);
 
-
         // Set menu item data
         const menuItemsData =
           json?.data?.cards
@@ -47,7 +47,7 @@ export default function Menu()
 
         const uniqueMenuItems = [];
         menuItemsData.forEach((item) => {
-          if (!uniqueMenuItems.find((x) => x.id === item.id)) {
+          if (!uniqueMenuItems.find((x) => x.category === item.category)) {
             uniqueMenuItems.push(item);
           }
         });
@@ -64,15 +64,38 @@ export default function Menu()
         return <h1>Loading...</h1>;
     }
 
-    const swiggy_url="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
+    
     return (
-        <>
-        <img src={swiggy_url+ restaurant.cloudinaryImageId} alt="" />
-        <div className="menu-box">
-            {
-                menuItems.map(item=> <p key={item.id}>{item.name}</p>)
-            }
-        </div>
-        </>
+      <>
+        <ImageBox restaurant={restaurant}/>
+        <MenuContainer menuItems={menuItems}/>
+      </>
     );
+}
+
+export function ImageBox({restaurant})
+{
+  const {id,name,costForTwoMessage,avgRating,cuisines,totalRatingsString ,cloudinaryImageId}= restaurant;
+  const url="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
+
+  return(
+      <div className="menu-info" key={id}>
+        <div className="img-info">
+          <img src={url+cloudinaryImageId} alt="restaurant" />
+        </div>
+
+        <div className="res-info">
+          <h1>{name}</h1>
+          <p>{cuisines.join(", ")}</p>
+
+          <ul>
+            <li>
+              ⭐{avgRating}
+            </li>
+            <li>{totalRatingsString}</li>
+            <li>{costForTwoMessage}</li>
+          </ul>
+        </div>
+      </div>
+  );
 }
