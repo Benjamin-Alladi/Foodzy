@@ -6,7 +6,6 @@ import AboutUs from "./AboutUs.js";
 import ContactUs from "./ContactUs.js";
 import ErrorPage from "./ErrorPage.js";
 import Menu from "./Menu.js";
-import "./index.css";
 
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 

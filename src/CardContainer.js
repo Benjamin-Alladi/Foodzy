@@ -66,18 +66,18 @@ export default function CardContainer()
     return restaurantList.length===0? <ShimmerContainer/> :(
         <>
             <label htmlFor="searchBox">
-                <input type="text" id="search-box" name="searchBox" value={searchText} onInput={handleChange}/>
-                <button className="search-btn" onClick={handleSearchClick}>
+                <input type="text" name="searchBox" value={searchText} className="ml-[33rem] mt-4 outline-none p-[0.35rem] border-[1px] border-[solid] border-black" onInput={handleChange}/>
+                <button className="py-[0.2rem] px-[0.5rem] bg-[#ff4500] border-[2px] border-[solid] border-[#ff4500] rounded-sm ml-[0.3rem] text-white font-[PT Sans, Calibri, sans-serif] active:scale-95" onClick={handleSearchClick}>
                     Search
                 </button>
             </label>
 
-            <button className="showbtn" onClick={handleClick}>
+            <button className="my-[0.6rem] mx-[42%] text-white text-center w-[12rem] py-[5px] bg-[#ff4500] border-[2px] border-[solid] border-[#ff4500] rounded-sm active:scale-[0.98]" onClick={handleClick}>
                 {showingAll?"Show Top Restaurants":"Show All"}
             </button>
             
            
-            <div className="restaurant-container">
+            <div className="w-[88%] mx-auto my-4 flex flex-row flex-wrap justify-evenly gap-4">
             {
                 (searchText.length==0 || (searchText.length>0 && resList.length!=restaurantList.length)) ? (
                     resList.map((restaurantObj)=>{
@@ -97,12 +97,13 @@ export function Card({restaurant})
 
     return (
         <Link to={"/restaurant/"+id}>
-        <div key={id} className="restaurant-card">
-            <img src={swiggy_url+cloudinaryImageId} alt="" className="card-img" loading="lazy"/>
-            <h3 className="res-name">{name}</h3>
-            <h5 className="cuisine">{cuisines.join(", ")}</h5>
-            <h5 className="area">{areaName}</h5>
-            <ul className="details-box">
+        <div key={id} className="w-[15rem] h-[16rem] p-[0.6rem] rounded-lg shadow-lg cursor-pointer font-[PT Sans, Calibri, sans-serif] text-ellipsis overflow-hidden hover:scale-[0.98] hover:bg-gray-100 text-black decoration-[none]">
+            <img src={swiggy_url+cloudinaryImageId} alt="" className="rounded-lg" loading="lazy"/>
+            <h3 className="whitespace-nowrap overflow-hidden text-ellipsis mt-2 text-xl">{name}</h3>
+            <h5 className="text-ellipsis font-light overflow-hidden mt-[-0.1rem] whitespace-nowrap text-sm">{cuisines.join(", ")}</h5>
+            <h5 className="text-ellipsis font-light overflow-hidden mt-[0.2rem] whitespace-nowrap text-[0.9rem]">{areaName}</h5>
+
+            <ul className="flex justify-evenly items-center mt-[0.2rem] ml-[-1.2rem] font-[PT Sans, Calibri, sans-serif] font-[1rem]">
                 <li> 
                     ⭐{avgRating}
                 </li>

@@ -61,7 +61,7 @@ export default function Menu()
     if(menuItems.length===0)
     {
         console.log("Loading");
-        return <h1>Loading...</h1>;
+        return <h1 className="loading-text" style={{textAlign:"center", fontFamily:"PT Sans, Calibri, sans-serif", fontWeight:"lighter", color:"grey"}}>Loading...</h1>;
     }
 
     
