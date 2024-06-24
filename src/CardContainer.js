@@ -93,17 +93,17 @@ export default function CardContainer()
 export function Card({restaurant})
 {
     let {id,name,cloudinaryImageId,areaName,cuisines,costForTwo,sla,avgRating}= restaurant.info;
-    const swiggy_url="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
+    const cdn_url="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
 
     return (
         <Link to={"/restaurant/"+id}>
         <div key={id} className="w-[15rem] h-[16rem] p-[0.6rem] rounded-lg shadow-lg cursor-pointer font-[PT Sans, Calibri, sans-serif] text-ellipsis overflow-hidden hover:scale-[0.98] hover:bg-gray-100 text-black decoration-[none]">
-            <img src={swiggy_url+cloudinaryImageId} alt="" className="rounded-lg" loading="lazy"/>
+            <img src={cdn_url+cloudinaryImageId} alt="" className="rounded-lg" loading="lazy"/>
             <h3 className="whitespace-nowrap overflow-hidden text-ellipsis mt-2 text-xl">{name}</h3>
-            <h5 className="text-ellipsis font-light overflow-hidden mt-[-0.1rem] whitespace-nowrap text-sm">{cuisines.join(", ")}</h5>
+            <h5 className="text-ellipsis font-light overflow-hidden mt-[-0.1rem] whitespace-nowrap text-[0.8rem]">{cuisines.join(", ")}</h5>
             <h5 className="text-ellipsis font-light overflow-hidden mt-[0.2rem] whitespace-nowrap text-[0.9rem]">{areaName}</h5>
 
-            <ul className="flex justify-evenly items-center mt-[0.2rem] ml-[-1.2rem] font-[PT Sans, Calibri, sans-serif] font-[1rem]">
+            <ul className="flex justify-evenly items-center mt-[0.2rem] ml-[-0.6rem] font-[PT Sans, Calibri, sans-serif] font-[0.8rem]">
                 <li> 
                     ⭐{avgRating}
                 </li>

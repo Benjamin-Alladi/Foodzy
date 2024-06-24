@@ -5,7 +5,7 @@ import CardContainer from "./CardContainer.js";
 import AboutUs from "./AboutUs.js";
 import ContactUs from "./ContactUs.js";
 import ErrorPage from "./ErrorPage.js";
-import Menu from "./Menu.js";
+import RestaurantMenu from "./RestaurantMenu.js";
 
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
@@ -29,7 +29,7 @@ const router= createBrowserRouter([
       },
       {
         path: "/restaurant/:resId",
-        element: <Menu/>
+        element: <RestaurantMenu/>
       }
     ],
   },
