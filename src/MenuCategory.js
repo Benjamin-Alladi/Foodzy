@@ -1,13 +1,11 @@
-import { useState } from "react";
-
-export default function MenuCategory({data})
+export default function MenuCategory({data, index, showIndex, setShowIndex})
 {
-    const [show, setShow]= useState(false);
-    // console.log(data);
+    // const [show, setShow]= useState(index===showIndex);
+    // console.log("Data:",data);
 
     function handleClick()
     {
-        setShow(!show);
+        setShowIndex(index===showIndex?null:index);
     }
 
     return (
@@ -19,14 +17,14 @@ export default function MenuCategory({data})
                 <span className="text-xl">⬇️</span>
             </div>
             
-            {show && <ItemList itemCardsList={data.itemCards}/>}
+            {index===showIndex && <ItemList itemCardsList={data.itemCards}/>}
         </div>
     );
 }
 
 export function ItemList({itemCardsList})
 {
-    console.log(itemCardsList);
+    // console.log(itemCardsList);
     const cdn_url="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
     // Accordion Body
     return(

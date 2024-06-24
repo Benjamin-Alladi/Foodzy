@@ -2,10 +2,13 @@ import {useParams} from "react-router-dom";
 
 import useRestaurantMenu from "./CustomHooks/useRestaurantMenu.js";
 import MenuCategory from "./MenuCategory.js";
+import { useState } from "react";
 
 export default function Menu()
 {
     const {resId}= useParams();
+
+    const [showIndex, setShowIndex]= useState(0);
 
     // menu items key, card type key
     const MENU_ITEM_TYPE= "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
@@ -35,7 +38,7 @@ export default function Menu()
         <div className="flex flex-col items-center">
           {
             categories.map((category,index)=>
-              <MenuCategory data={category.card.card} key={index}/>
+              <MenuCategory data={category.card.card} index={index} showIndex={showIndex} setShowIndex={setShowIndex} key={index}/>
             )
           }
         </div>
