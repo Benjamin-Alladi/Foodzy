@@ -7,9 +7,10 @@ export default function App()
 {
     return (
         <div className="app flex flex-col justify-between min-h-[100vh]">
-        <NavBar/>
-        <Outlet/>
-        <Footer/>
+            {console.log("App rendered")}
+            <NavBar/>
+            <Outlet/>
+            <Footer/>
         </div>
     );
 }

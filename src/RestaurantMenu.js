@@ -15,7 +15,7 @@ export default function Menu()
     const RESTAURANT_TYPE ="type.googleapis.com/swiggy.presentation.food.v2.Restaurant";
 
     const resInfo= useRestaurantMenu(resId);
-    console.log("resInfo:",resInfo);
+    // console.log("resInfo:",resInfo);
 
     let restaurant=null, categories=[];
     if(resInfo)
@@ -28,8 +28,8 @@ export default function Menu()
       );
     }
 
-    console.log("Restaurant:",restaurant);
-    console.log("Categories:", categories);
+    // console.log("Restaurant:",restaurant);
+    // console.log("Categories:", categories);
 
     return restaurant==null? <h1 className="text-center align-middle text-gray-500 animate-pulse text-2xl">Loading</h1>:(
       <>
@@ -52,7 +52,7 @@ export function ImageBox({restaurant})
   const url="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
 
   return(
-      <div className="flex justify-start items-center w-[62%] mx-auto p-4 bg-slate-600 text-white font-[PT Sans, Calibri, sans-serif] shadow-md" key={id}>
+      <div className="flex justify-start items-center w-[62%] mx-auto p-4 bg-slate-600 text-white font-[PT Sans, Calibri, sans-serif] mt-1 shadow-md" key={id}>
         <div className="w-[18rem] rounded-lg">
           <img src={url+cloudinaryImageId} alt="restaurant" />
         </div>

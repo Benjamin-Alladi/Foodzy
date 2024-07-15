@@ -29,10 +29,10 @@ export default function CardContainer()
 
             const json=await response.json();
 
-            console.log(json);
+            // console.log(json);
 
             setRestaurantList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-            console.log("CardContainer Data is fetched");
+            // console.log("CardContainer Data is fetched");
         }
         catch(e)
         {

@@ -17,7 +17,7 @@ export default function AboutUs()
                 const response=await fetch('https://api.github.com/users/Benjamin-Alladi');
                 const json=await response.json();
 
-                console.log("User:", json);
+                // console.log("User:", json);
                 setProfile(json);
             } 
             catch (error) 
