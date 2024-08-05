@@ -10,11 +10,11 @@ export default function MenuCategory({data, index, showIndex, setShowIndex})
 
     return (
         // Accordion
-        <div onClick={handleClick} className="w-[62%] mx-auto my-4 bg-gray-50 shadow-md p-4 cursor-pointer font-[PT Sans, Calibri, sans-serif] border-b-4">
+        <div className="w-[62%] mx-auto my-4 bg-gray-50 shadow-md p-4 cursor-pointer font-[PT Sans, Calibri, sans-serif] border-b-4">
 
             <div className="flex justify-between">
                 <span className="font-medium">{data.title} ({data.itemCards.length})</span>
-                <span className="text-xl">⬇️</span>
+                <span className="text-xl" onClick={handleClick}>⬇️</span>
             </div>
             
             {index===showIndex && <ItemList itemCardsList={data.itemCards}/>}
