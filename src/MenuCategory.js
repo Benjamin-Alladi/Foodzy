@@ -14,7 +14,7 @@ export default function MenuCategory({data, index, showIndex, setShowIndex})
 
             <div className="flex justify-between">
                 <span className="font-medium">{data.title} ({data.itemCards.length})</span>
-                <span className="text-xl" onClick={handleClick}>⬇️</span>
+                <span className="text-xl" onClick={handleClick} onMouseOver={(e)=>e.target.style.transform= "scale(1.1)"} onMouseOut={(e)=>e.target.style.transform="scale(1)"}>⬇️</span>
             </div>
             
             {index===showIndex && <ItemList itemCardsList={data.itemCards}/>}
