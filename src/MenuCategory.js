@@ -1,3 +1,6 @@
+import { useDispatch } from "react-redux";
+import { cartActions } from "./utils/cartSlice";
+
 export default function MenuCategory({data, index, showIndex, setShowIndex})
 {
     // const [show, setShow]= useState(index===showIndex);
@@ -12,9 +15,9 @@ export default function MenuCategory({data, index, showIndex, setShowIndex})
         // Accordion
         <div className="w-[62%] mx-auto my-4 bg-gray-50 shadow-md p-4 cursor-pointer font-[PT Sans, Calibri, sans-serif] border-b-4">
 
-            <div className="flex justify-between">
+            <div className="flex justify-between" onClick={handleClick}>
                 <span className="font-medium">{data.title} ({data.itemCards.length})</span>
-                <span className="text-xl" onClick={handleClick} onMouseOver={(e)=>e.target.style.transform= "scale(1.1)"} onMouseOut={(e)=>e.target.style.transform="scale(1)"}>⬇️</span>
+                <span className="text-xl" onMouseOver={(e)=>e.target.style.transform= "scale(1.1)"} onMouseOut={(e)=>e.target.style.transform="scale(1)"}>⬇️</span>
             </div>
             
             {index===showIndex && <ItemList itemCardsList={data.itemCards}/>}
@@ -26,6 +29,18 @@ export function ItemList({itemCardsList})
 {
     // console.log(itemCardsList);
     const cdn_url="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
+
+    const dispatch= useDispatch();
+    function handleAddItem(item)
+    {
+        // dispatch({
+        //     "type": "cart/addItem",
+        //     payload: item
+        // });
+
+        dispatch(cartActions.addItem(item));
+    }
+
     // Accordion Body
     return(
         <div>
@@ -42,7 +57,11 @@ export function ItemList({itemCardsList})
 
                         <div className="w-[24%] mb-6 relative">
                             <img src={cdn_url+itemCard.card.info.imageId} className="rounded-lg"/>
-                            <button className="bg-[#ff4500] text-white px-8 py-1 rounded-md absolute left-11 bottom-[-14] shadow-lg active:scale-[0.96]">Add</button>
+
+                            <button className="bg-[#ff4500] text-white px-8 py-1 rounded-md absolute left-11 bottom-[-14] active:scale-[0.96]"
+                            onClick={()=> handleAddItem(itemCard)}>
+                                Add
+                            </button>
                         </div>
                     </div>
                 )

@@ -8,6 +8,9 @@ import ErrorPage from "./ErrorPage.js";
 import RestaurantMenu from "./RestaurantMenu.js";
 
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore.js";
+import Cart from "./Cart.js";
 
 const router= createBrowserRouter([
   {
@@ -30,13 +33,19 @@ const router= createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu/>
+      },
+      {
+        path: "/cart",
+        element: <Cart/>
       }
     ],
   },
 ])
 const root= ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    // <React.StrictMode>
-      <RouterProvider router={router}/>
-    // </React.StrictMode>
+    <Provider store={appStore}>
+      {/* <React.StrictMode> */}
+        <RouterProvider router={router}/>
+      {/* </React.StrictMode> */}
+    </Provider>
 );

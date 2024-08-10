@@ -31,7 +31,11 @@ export default function Menu()
     // console.log("Restaurant:",restaurant);
     // console.log("Categories:", categories);
 
-    return restaurant==null? <h1 className="text-center align-middle text-gray-500 animate-pulse text-2xl">Loading</h1>:(
+    return restaurant==null? (
+    <div className="flex justify-center items-center h-screen">
+        <div className="w-6 h-6 border-4 border-t-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+        <span className="ml-1 text-lg font-semibold text-gray-600">Loading...</span>
+    </div>):(
       <>
         <ImageBox restaurant={restaurant}/>
 
